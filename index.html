@@ -3,577 +3,285 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>一路(かずま)くんと巡る 飯盛山歴史アドベンチャー</title>
-  <meta name="description" content="白虎隊の案内役・一路くんと一緒に、飯盛山の歴史スポットを巡る観光QRシステムです。" />
+  <title>飯盛山歴史アドベンチャー | トップ</title>
   <style>
     :root{
-      --bg:#0f172a;
-      --bg-soft:#13203b;
-      --card:rgba(255,255,255,0.14);
-      --card-border:rgba(255,255,255,0.24);
-      --text:#ffffff;
-      --sub:#e5eefc;
-      --accent:#f6c453;
-      --accent-deep:#d89c16;
-      --green:#2d6a4f;
-      --shadow:0 12px 40px rgba(0,0,0,0.28);
-      --radius:24px;
-      --max:1200px;
+      --bg: #f7f4ee;
+      --card: #ffffff;
+      --text: #2f2a24;
+      --sub: #6b6257;
+      --accent: #8b5e3c;
+      --accent-2: #d9b38c;
+      --line: #e7dfd3;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --radius: 18px;
+      --maxw: 960px;
+      --stamp-bg: #fff7d6;
+      --stamp-border: #e7c96b;
+      --stamp-text: #7a5a00;
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html,body{
+    body{
       margin:0;
-      padding:0;
-      font-family:
-        "Hiragino Sans",
-        "Yu Gothic",
-        "Meiryo",
-        sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
-
-    img{
-      max-width:100%;
-      display:block;
-    }
-
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    .site-header{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      z-index:50;
-      background:linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0));
-      padding:14px 18px;
-    }
-
-    .site-header-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .brand{
-      display:flex;
-      flex-direction:column;
-      line-height:1.2;
-    }
-
-    .brand-small{
-      font-size:12px;
-      color:#dbeafe;
-      letter-spacing:.08em;
-    }
-
-    .brand-main{
-      font-size:18px;
-      font-weight:700;
-      color:#fff;
-    }
-
-    .header-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 16px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.14);
-      border:1px solid rgba(255,255,255,0.24);
-      color:#fff;
-      font-size:14px;
-      font-weight:700;
-      backdrop-filter: blur(8px);
-    }
-
-    .hero{
-      position:relative;
-      min-height:100svh;
-      display:flex;
-      align-items:center;
-      overflow:hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans",
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      color: var(--text);
+      line-height: 1.75;
       background:
-        linear-gradient(to bottom, rgba(8,15,30,0.18), rgba(8,15,30,0.72)),
-        url("assets/img/hero-iimoriyama-kazuma.jpg") center center / cover no-repeat;
+        linear-gradient(rgba(248,245,239,.72), rgba(242,237,227,.92)),
+        url("assets/img/hero-iimoriyama-kazuma.jpg") center center / cover no-repeat fixed;
+      min-height:100vh;
     }
 
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(90deg, rgba(7,12,24,0.72) 0%, rgba(7,12,24,0.40) 36%, rgba(7,12,24,0.10) 62%, rgba(7,12,24,0.04) 100%);
-      pointer-events:none;
+    .wrap{
+      width: min(100% - 24px, var(--maxw));
+      margin: 0 auto;
+      padding: 18px 0 48px;
     }
 
-    .hero-inner{
-      position:relative;
-      z-index:2;
-      width:100%;
-      max-width:var(--max);
-      margin:0 auto;
-      padding:
-        clamp(88px, 10vw, 120px)
-        20px
-        clamp(32px, 6vw, 60px);
-      display:grid;
-      grid-template-columns:minmax(0, 560px);
-    }
-
-    .hero-copy{
-      background:rgba(9,16,30,0.34);
-      border:1px solid rgba(255,255,255,0.16);
-      backdrop-filter: blur(10px);
-      border-radius:var(--radius);
-      padding:22px 20px 20px;
-      box-shadow:var(--shadow);
-    }
-
-    .eyebrow{
-      display:inline-block;
-      margin-bottom:10px;
-      padding:7px 12px;
-      border-radius:999px;
-      background:rgba(246,196,83,0.16);
-      border:1px solid rgba(246,196,83,0.34);
-      color:#fff1c7;
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:.06em;
-    }
-
-    .hero h1{
-      margin:0;
-      line-height:1.08;
-      font-size:clamp(34px, 6vw, 68px);
-      font-weight:900;
-      letter-spacing:.01em;
-      text-shadow:0 4px 18px rgba(0,0,0,0.26);
-    }
-
-    .hero h1 .small{
-      display:block;
-      font-size:clamp(18px, 3vw, 28px);
-      font-weight:700;
-      color:#dbeafe;
-      margin-bottom:8px;
-    }
-
-    .hero h1 .accent{
-      color:#ffe39a;
-    }
-
-    .lead{
-      margin:18px 0 0;
-      font-size:clamp(15px, 2vw, 18px);
-      line-height:1.9;
-      color:var(--sub);
-    }
-
-    .guide-box{
-      margin-top:18px;
-      padding:16px 16px;
-      border-radius:18px;
-      background:rgba(255,255,255,0.12);
-      border:1px solid rgba(255,255,255,0.18);
-    }
-
-    .guide-name{
-      margin:0 0 8px;
-      font-size:14px;
-      font-weight:800;
-      color:#fff0b3;
-      letter-spacing:.05em;
-    }
-
-    .guide-text{
-      margin:0;
-      font-size:15px;
-      line-height:1.8;
-      color:#f8fbff;
-    }
-
-    .hero-actions{
-      margin-top:22px;
+    .topbar{
       display:flex;
       flex-wrap:wrap;
-      gap:12px;
+      gap:10px;
+      margin-bottom:16px;
     }
 
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:52px;
-      padding:0 20px;
+      gap:8px;
+      min-height:48px;
+      padding:10px 18px;
       border-radius:999px;
-      font-size:15px;
-      font-weight:800;
-      transition:.2s ease;
-      border:1px solid transparent;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--text);
+      box-shadow: var(--shadow);
+      transition: transform .15s ease;
+      cursor:pointer;
     }
+
+    .btn:hover{ transform: translateY(-1px); }
 
     .btn-primary{
-      background:linear-gradient(180deg, var(--accent), var(--accent-deep));
-      color:#2a1d00;
-      box-shadow:0 10px 24px rgba(216,156,22,0.28);
-    }
-
-    .btn-primary:hover{
-      transform:translateY(-1px);
-      filter:brightness(1.02);
+      background: var(--accent);
+      color:#fff;
+      border-color: var(--accent);
     }
 
     .btn-secondary{
-      background:rgba(255,255,255,0.12);
-      border-color:rgba(255,255,255,0.24);
-      color:#fff;
-      backdrop-filter: blur(8px);
+      background:#f8f3eb;
+      color:#6a513d;
     }
 
-    .btn-secondary:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,0.16);
+    .hero{
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(231,223,211,.95);
+      border-radius: 26px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(4px);
     }
 
-    .hero-note{
-      margin-top:12px;
-      font-size:12px;
-      color:#dbeafe;
-      opacity:.95;
+    .hero-inner{
+      padding: 28px 22px 24px;
+      text-align:center;
     }
 
-    .section{
-      padding:56px 20px;
-      background:linear-gradient(180deg, #0f172a 0%, #13203b 100%);
-    }
-
-    .section-inner{
-      max-width:var(--max);
-      margin:0 auto;
-    }
-
-    .section-head{
-      max-width:760px;
-      margin-bottom:26px;
-    }
-
-    .section-label{
+    .eyebrow{
       display:inline-block;
       margin-bottom:10px;
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.1em;
-      color:#cbd5e1;
+      padding:6px 12px;
+      border-radius:999px;
+      background:#f3ece2;
+      color:#7a5a42;
+      font-size:.92rem;
+      font-weight:700;
     }
 
-    .section-title{
-      margin:0;
-      font-size:clamp(24px, 4vw, 38px);
+    h1{
+      margin:0 0 12px;
+      font-size: clamp(2rem, 5vw, 3rem);
       line-height:1.3;
     }
 
-    .section-desc{
-      margin:12px 0 0;
-      line-height:1.9;
-      color:#d9e6fb;
-      font-size:15px;
+    .lead{
+      margin:0 auto;
+      max-width: 760px;
+      color: var(--sub);
+      font-size:1.06rem;
     }
 
-    .feature-grid{
+    .stamp-bar{
+      display:inline-flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin: 18px auto 0;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--stamp-bg);
+      border:1px solid var(--stamp-border);
+      color: var(--stamp-text);
+      font-weight:700;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px;
+      margin-top: 24px;
+    }
+
+    .grid{
       display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:16px;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    @media (max-width: 760px){
+      .grid{
+        grid-template-columns: 1fr;
+      }
     }
 
     .card{
-      padding:22px 18px;
-      border-radius:22px;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.14);
-      box-shadow:var(--shadow);
+      background: rgba(255,255,255,.94);
+      border:1px solid rgba(231,223,211,.95);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(4px);
     }
 
-    .card h3{
-      margin:0 0 10px;
-      font-size:18px;
+    .card h2{
+      margin:0 0 12px;
+      font-size:1.25rem;
     }
 
-    .card p{
+    .list{
       margin:0;
-      color:#dbe7f8;
-      line-height:1.85;
-      font-size:14px;
+      padding-left: 1.2em;
+      color:#5b5148;
     }
 
-    .spot-preview{
-      display:grid;
-      grid-template-columns:repeat(5, 1fr);
-      gap:14px;
-      margin-top:22px;
+    .subtext{
+      color: var(--sub);
+      margin: 0;
     }
 
-    .spot-chip{
-      padding:16px 14px;
-      border-radius:18px;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.14);
-      text-align:center;
-      min-height:110px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:8px;
-    }
-
-    .spot-order{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:34px;
-      height:34px;
-      margin:0 auto;
-      border-radius:999px;
-      background:#ffe39a;
-      color:#302100;
-      font-size:14px;
-      font-weight:900;
-    }
-
-    .spot-name{
-      font-size:14px;
-      font-weight:800;
-      line-height:1.5;
-      color:#fff;
-    }
-
-    .bottom-cta{
-      margin-top:28px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-    }
-
-    .site-footer{
-      padding:22px 20px 32px;
-      background:#0b1222;
-      color:#cbd5e1;
-      font-size:13px;
-    }
-
-    .site-footer-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    @media (max-width: 980px){
-      .feature-grid{
-        grid-template-columns:1fr;
-      }
-
-      .spot-preview{
-        grid-template-columns:repeat(2, 1fr);
-      }
-
-      .hero{
-        background-position:center right;
-      }
-
-      .hero::after{
-        background:
-          linear-gradient(180deg, rgba(7,12,24,0.28) 0%, rgba(7,12,24,0.48) 45%, rgba(7,12,24,0.82) 100%);
-      }
-
-      .hero-inner{
-        grid-template-columns:1fr;
-        align-items:end;
-      }
-
-      .hero-copy{
-        margin-top:220px;
-      }
-    }
-
-    @media (max-width: 560px){
-      .site-header{
-        padding:12px 12px;
-      }
-
-      .brand-main{
-        font-size:16px;
-      }
-
-      .header-link{
-        padding:9px 12px;
-        font-size:13px;
-      }
-
-      .hero-inner{
-        padding:84px 14px 24px;
-      }
-
-      .hero-copy{
-        padding:18px 16px;
-        border-radius:20px;
-      }
-
-      .lead,
-      .guide-text{
-        font-size:14px;
-      }
-
-      .btn{
-        width:100%;
-      }
-
-      .spot-preview{
-        grid-template-columns:1fr;
-      }
+    .footer-note{
+      margin-top:16px;
+      color:#5c544c;
+      font-size:.95rem;
+      background: rgba(255,255,255,.88);
+      border:1px solid rgba(231,223,211,.95);
+      border-radius: 14px;
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header-inner">
-      <div class="brand">
-        <span class="brand-small">白虎隊の案内役・一路くんと巡る</span>
-        <span class="brand-main">飯盛山歴史アドベンチャー</span>
-      </div>
-      <a class="header-link" href="course.html">コースを見る</a>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="btn" href="course.html">コースを見る</a>
+      <a class="btn" href="complete.html">達成画面を見る</a>
     </div>
-  </header>
 
-  <main>
-    <section class="hero" aria-label="メインビジュアル">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <span class="eyebrow">会津若松・飯盛山を歩いて巡る観光QRガイド</span>
-
-          <h1>
-            <span class="small">一路（かずま）くんと巡る</span>
-            <span class="accent">飯盛山</span><br>
-            歴史アドベンチャー
-          </h1>
-
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="eyebrow">Sample版 / 飯盛山アドベンチャー</div>
+          <h1>飯盛山 歴史アドベンチャー</h1>
           <p class="lead">
-            飯盛山に残る歴史スポットを、白虎隊の案内役・一路くんと一緒に巡る体験型ガイドです。<br>
-            現地のQRコードを読みながら、景色と歴史をゆっくり楽しめます。
+            飯盛山の歴史スポットをめぐりながら、
+            「見るだけ」で終わらない体験型の観光サンプルです。<br>
+            説明会では、クリック操作を「現地でQRを読んだ想定」としてご覧いただけます。
           </p>
 
-          <div class="guide-box">
-            <p class="guide-name">一路くんからの案内</p>
-            <p class="guide-text">
-              こんにちは！ ぼくは白虎隊の案内役、一路です。<br>
-              滝沢本陣から飯盛山頂、妙国寺まで、いっしょに歴史の道を歩いてみよう！
-            </p>
-          </div>
+          <div id="stampProgress" class="stamp-bar">冒険スタンプ 0 / 5</div>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="course.html">冒険をはじめる →</a>
-            <a class="btn btn-secondary" href="#about">このシステムを見る</a>
+            <a class="btn" href="complete.html">達成画面を見る</a>
+            <button class="btn btn-secondary" onclick="resetAdventure()">スタンプをリセット</button>
           </div>
-
-          <p class="hero-note">
-            ※ 現地では各スポットのQRコードを読み取ると、説明ページが表示されます。
-          </p>
         </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>このサンプルで体験できること</h2>
+          <ul class="list">
+            <li>スポットを順番に見ながら、歴史を学べます。</li>
+            <li>各スポット到達を、スタンプとして記録できます。</li>
+            <li>最後に達成画面で、冒険の進み具合を確認できます。</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>説明会での見せ方</h2>
+          <ul class="list">
+            <li>トップ画面から「冒険をはじめる」を押します。</li>
+            <li>コース画面でスポットを選びます。</li>
+            <li>スポット画面を開くことで、QR連携の動きを再現します。</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>この仕組みの意味</h2>
+          <p class="subtext">
+            これは単なる観光ページではありません。<br>
+            地域の歴史を「歩いて体験する」ための、地域観光DXの試作です。
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>今後の発展</h2>
+          <p class="subtext">
+            将来は、QRコード、GPS、応募フォーム、景品連携などに拡張できます。<br>
+            今回はその前段となる、役員向けの体験サンプルです。
+          </p>
+        </article>
+      </section>
+
+      <div class="footer-note">
+        ※ この sample 版では、スタンプ情報はこの端末のブラウザ内にのみ保存されます。
       </div>
-    </section>
+    </main>
+  </div>
 
-    <section class="section" id="about">
-      <div class="section-inner">
-        <div class="section-head">
-          <span class="section-label">ABOUT</span>
-          <h2 class="section-title">このシステムは、観光案内を “歩く体験” に変える入口です。</h2>
-          <p class="section-desc">
-            いまは観光QRガイドとして、各スポットの説明をスマホで見られる構成です。
-            将来的にはスタンプラリーや達成画面へ広げられるよう、やさしく分かりやすい導線で設計しています。
-          </p>
-        </div>
+  <script>
+    const STORAGE_KEY = "iimoriyama_stamps";
+    const TOTAL_SPOTS = 5;
 
-        <div class="feature-grid">
-          <article class="card">
-            <h3>歩いて巡る</h3>
-            <p>
-              飯盛山周辺の歴史スポットを、現地で歩きながら楽しめます。高齢の方やご家族でも、無理なく巡りやすい構成です。
-            </p>
-          </article>
+    function getStampIds(){
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    }
 
-          <article class="card">
-            <h3>QRでわかる</h3>
-            <p>
-              各スポットに設置されたQRコードをスマホで読むだけで、その場所の説明や見どころをすぐ確認できます。
-            </p>
-          </article>
+    function updateStampProgress(){
+      const count = getStampIds().length;
+      document.getElementById("stampProgress").textContent = `冒険スタンプ ${count} / ${TOTAL_SPOTS}`;
+    }
 
-          <article class="card">
-            <h3>一路くんが案内</h3>
-            <p>
-              白虎隊の案内役・一路くんが、やさしく親しみやすく歴史をナビゲートします。観光だけでなく学びにもつながります。
-            </p>
-          </article>
-        </div>
+    function resetAdventure(){
+      localStorage.removeItem(STORAGE_KEY);
+      alert("スタンプをリセットしました");
+      updateStampProgress();
+    }
 
-        <div class="section-head" style="margin-top:34px;">
-          <span class="section-label">SPOTS</span>
-          <h2 class="section-title">今回巡る主なスポット</h2>
-          <p class="section-desc">
-            試供版では、歩いて巡りやすい5つの地点を中心に構成しています。
-          </p>
-        </div>
-
-        <div class="spot-preview">
-          <div class="spot-chip">
-            <span class="spot-order">1</span>
-            <div class="spot-name">滝沢本陣</div>
-          </div>
-          <div class="spot-chip">
-            <span class="spot-order">2</span>
-            <div class="spot-name">白虎隊の洞穴</div>
-          </div>
-          <div class="spot-chip">
-            <span class="spot-order">3</span>
-            <div class="spot-name">さざえ堂</div>
-          </div>
-          <div class="spot-chip">
-            <span class="spot-order">4</span>
-            <div class="spot-name">飯盛山頂</div>
-          </div>
-          <div class="spot-chip">
-            <span class="spot-order">5</span>
-            <div class="spot-name">妙国寺</div>
-          </div>
-        </div>
-
-        <div class="bottom-cta">
-          <a class="btn btn-primary" href="course.html">コース案内へ進む →</a>
-          <a class="btn btn-secondary" href="spot.html?spot=kitataki">スポット画面を見る</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="site-footer-inner">
-      <div>一路くんと巡る 飯盛山歴史アドベンチャー</div>
-      <div>© みんなの地域冒険システム</div>
-    </div>
-  </footer>
+    updateStampProgress();
+  </script>
 </body>
 </html>
