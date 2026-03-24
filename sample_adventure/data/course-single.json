@@ -1,0 +1,138 @@
+{
+    "site": {
+      "site_name": "みんなの地域冒険システム",
+      "site_description": "地域を歩いて発見する冒険型まち歩きシステム",
+      "theme": "local-adventure"
+    },
+  
+    "region": {
+      "id": "aizuwakamatsu-iimoriyama",
+      "name": "会津若松・飯盛山エリア",
+      "slug": "iimoriyama",
+      "summary": "歴史と眺望を歩いて楽しむ地域冒険エリア",
+      "cover_image": "assets/images/courses/iimoriyama-history.jpg"
+    },
+  
+    "course": {
+      "id": "course-iimoriyama-01",
+      "region_id": "aizuwakamatsu-iimoriyama",
+      "title": "飯盛山歴史冒険コース",
+      "slug": "iimoriyama-history",
+      "summary": "滝沢本陣から出発し、白虎隊の洞穴、さざえ堂、飯盛山頂、妙國寺を巡る徒歩冒険コースです。",
+      "start_spot_id": "spot-kitataki-honjin",
+      "goal_spot_id": "spot-myokokuji",
+      "estimated_time_min": 75,
+      "distance_km": 2.8,
+      "level": "やさしい",
+      "cover_image": "assets/images/courses/iimoriyama-history.jpg",
+      "map_center_lat": 37.5098745,
+      "map_center_lng": 139.9494505
+    },
+  
+    "spots": [
+  
+      {
+        "id": "spot-kitataki-honjin",
+        "name": "滝沢本陣",
+        "short_text": "冒険の出発地点",
+        "description": "滝沢本陣は、この冒険の出発地点です。ここから飯盛山へ向かう歴史探索が始まります。",
+        "image": "assets/images/spots/iimoriyama/kitataki-honjin.jpg",
+        "lat": 37.506183,
+        "lng": 139.952868,
+        "order": 1,
+        "next_spot_id": "spot-byakkotai-cave",
+        "prev_spot_id": null
+      },
+  
+      {
+        "id": "spot-byakkotai-cave",
+        "name": "白虎隊の洞穴",
+        "short_text": "歴史を感じる洞穴",
+        "description": "白虎隊が戦場から戻る途中にくぐったと伝えられる洞穴です。現在は農業用水の取水口として使われています。",
+        "image": "assets/images/spots/iimoriyama/byakkotai-cave.jpg",
+        "lat": 37.505096,
+        "lng": 139.954446,
+        "order": 2,
+        "next_spot_id": "spot-sazaedo",
+        "prev_spot_id": "spot-kitataki-honjin"
+      },
+  
+      {
+        "id": "spot-sazaedo",
+        "name": "さざえ堂",
+        "short_text": "らせん構造の文化建築",
+        "description": "さざえ堂は、らせん構造で知られる独特な建築です。飯盛山を代表する文化的な建物です。",
+        "image": "assets/images/spots/iimoriyama/sazaedo.jpg",
+        "lat": 37.504700,
+        "lng": 139.954260,
+        "order": 3,
+        "next_spot_id": "spot-iimoriyama-top",
+        "prev_spot_id": "spot-byakkotai-cave"
+      },
+  
+      {
+        "id": "spot-iimoriyama-top",
+        "name": "飯盛山頂",
+        "short_text": "会津を見渡す景色",
+        "description": "飯盛山頂からは会津の町並みを見渡すことができます。歴史と景色を感じられる場所です。",
+        "image": "assets/images/spots/iimoriyama/iimoriyama-top.jpg",
+        "lat": 37.504299,
+        "lng": 139.955337,
+        "order": 4,
+        "next_spot_id": "spot-myokokuji",
+        "prev_spot_id": "spot-sazaedo"
+      },
+  
+      {
+        "id": "spot-myokokuji",
+        "name": "妙國寺",
+        "short_text": "冒険の終着地点",
+        "description": "妙國寺は飯盛山探索の最後の地点です。歩いて巡った歴史の余韻を感じながら旅を締めくくります。",
+        "image": "assets/images/spots/iimoriyama/myokokuji.jpg",
+        "lat": 37.507517,
+        "lng": 139.948767,
+        "order": 5,
+        "next_spot_id": null,
+        "prev_spot_id": "spot-iimoriyama-top"
+      }
+  
+    ],
+  
+    "missions": [
+  
+      {
+        "spot_id": "spot-kitataki-honjin",
+        "type": "quiz",
+        "question": "ここはこのコースのどこでしょう？",
+        "choices": ["出発地点", "中間地点", "終着地点"],
+        "answer": "出発地点"
+      },
+  
+      {
+        "spot_id": "spot-byakkotai-cave",
+        "type": "mission",
+        "question": "洞穴を見て、当時の歴史を想像してみましょう。"
+      },
+  
+      {
+        "spot_id": "spot-sazaedo",
+        "type": "quiz",
+        "question": "さざえ堂の特徴は？",
+        "choices": ["らせん構造", "地下構造", "水上構造"],
+        "answer": "らせん構造"
+      },
+  
+      {
+        "spot_id": "spot-iimoriyama-top",
+        "type": "mission",
+        "question": "山頂から見える景色の中で一番印象に残るものを探してみましょう。"
+      },
+  
+      {
+        "spot_id": "spot-myokokuji",
+        "type": "mission",
+        "question": "今日の冒険で一番印象に残った場所を思い出してください。"
+      }
+  
+    ]
+  }
